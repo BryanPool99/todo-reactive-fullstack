@@ -1,0 +1,25 @@
+<header class="header">
+  <h1>{{ title().toUpperCase() }}</h1>
+  <form [formGroup]="formSearch" (ngSubmit)="onSubmit()" class="container-form">
+    <div class="container-search">
+      <p-floatlabel>
+        <p-iconfield>
+          <p-inputicon class="pi pi-search" />
+          <input pInputText id="over_label" formControlName="search" autocomplete="off" />
+        </p-iconfield>
+        <label for="over_label">Buscar tarea</label>
+      </p-floatlabel>
+    </div>
+    <div class="container-select">
+      <p-select
+        formControlName="filterStatus"
+        [options]="optionsFilter"
+        optionLabel="label"
+        placeholder="Selecciona uno"
+      />
+    </div>
+    <div class="container-btn-mode-dark">
+      <p-button icon="pi pi-moon" aria-label="moon" />
+    </div>
+  </form>
+</header>

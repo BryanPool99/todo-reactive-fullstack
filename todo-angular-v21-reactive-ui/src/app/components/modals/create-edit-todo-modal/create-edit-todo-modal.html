@@ -1,0 +1,19 @@
+<form [formGroup]="todoForm" (ngSubmit)="onSave()">
+  <div class="field">
+    <label for="task">Tarea</label>
+    <input id="task" type="text" pInputText formControlName="task" class="w-full" />
+  </div>
+  <div class="field">
+    <label for="is_completed">Estado</label>
+    <p-select
+      formControlName="is_completed"
+      [options]="statusTodo"
+      optionLabel="label"
+      [appendTo]="'body'"
+    />
+  </div>
+  <div class="flex justify-content-end gap-2 mt-4">
+    <p-button label="Cancelar" severity="secondary" (click)="onCancel()" />
+    <p-button label="Guardar" type="submit" [disabled]="todoForm.invalid" />
+  </div>
+</form>

@@ -1,6 +1,6 @@
 <main>
   <p-table
-    [value]="array"
+    [value]="_todoStoreService.todo()"
     [paginator]="true"
     [rows]="5"
     [tableStyle]="{ 'min-width': '50rem' }"
@@ -19,13 +19,19 @@
       <tr>
         <td>{{ todo.id }}</td>
         <td>{{ todo.task }}</td>
-        <td>{{ todo.isCompleted }}</td>
-        <td>{{ todo.created }}</td>
+        <td>{{ todo.is_completed }}</td>
+        <td>{{ todo.created_at * 1000 | date: 'yyyy-MM-dd' }}</td>
         <td>
-          <p-button icon="pi pi-pencil"></p-button>
-          <p-button icon="pi pi-trash"></p-button>
+          <p-button icon="pi pi-pencil" severity="warn" (click)="openEditModal(todo.id)"></p-button>
+          <p-button
+            (click)="confirmDelete($event, todo.id)"
+            icon="pi pi-trash"
+            severity="danger"
+          ></p-button>
         </td>
       </tr>
     </ng-template>
   </p-table>
+  <p-confirmDialog />
+  <p-toast />
 </main>
